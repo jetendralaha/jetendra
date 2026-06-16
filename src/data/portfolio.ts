@@ -184,7 +184,7 @@ export const projects: ProjectItem[] = [
     title: "Cloud Cost Analysis",
     description:
       "Open-source tool for cloud cost optimization — analyzes usage and spend, then surfaces actionable savings suggestions across resources.",
-    tags: ["FinOps", "Cloud Cost", "Optimization", "Python"],
+    tags: ["FinOps", "Cloud Cost", "Optimization", "Python", "GenAI", "LLM"],
     repo: "https://github.com/jetendralaha/clous-cost-analysis",
   },
   {
@@ -205,13 +205,13 @@ export const projects: ProjectItem[] = [
     title: "AI Log Analysis with RAG",
     description:
       "Contextual log correlation engine using RAG and Cognee-based memory concepts for long-term incident understanding and faster root-cause analysis.",
-    tags: ["RAG", "Cognee", "Observability", "Python"],
+    tags: ["RAG", "Cognee", "Observability", "Python", "GenAI"],
   },
   {
     title: "Onboarding Bot",
     description:
       "A Kubernetes-deployed GitLab bot that automates application onboarding — turning a single GitLab issue into a fully automated pipeline from requirement parsing and approval routing to repository creation and CI/CD setup, eliminating manual, error-prone steps.",
-    tags: ["GitLab", "Kubernetes", "Automation", "CI/CD"],
+    tags: ["GitLab", "Kubernetes", "Automation", "CI/CD", "GenAI"],
   },
   {
     title: "End-to-End DevSecOps Pipeline",
