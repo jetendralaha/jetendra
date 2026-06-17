@@ -1,15 +1,39 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { navLinks, personal } from "../data/portfolio";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string>(navLinks[0]?.href ?? "");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const ids = navLinks
+      .map((l) => l.href.replace("#", ""))
+      .filter(Boolean);
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(`#${visible.target.id}`);
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.25, 0.5, 1] }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
   }, []);
 
   const initials = personal.name
@@ -37,16 +61,30 @@ export default function Navbar() {
         </a>
 
         <ul className="hidden items-center gap-7 md:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm font-medium text-slate-300 transition-colors hover:text-accent"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = active === link.href;
+            return (
+              <li key={link.href} className="relative">
+                <a
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors ${
+                    isActive
+                      ? "text-accent"
+                      : "text-slate-300 hover:text-accent"
+                  }`}
+                >
+                  {link.label}
+                </a>
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute -bottom-1.5 left-0 h-0.5 w-full rounded-full bg-accent"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </li>
+            );
+          })}
         </ul>
 
         <button

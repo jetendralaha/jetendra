@@ -2,14 +2,17 @@ import { Suspense, lazy } from "react";
 import { motion } from "framer-motion";
 import { personal, socials } from "../data/portfolio";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
+import { useDeviceTier } from "../hooks/useDeviceTier";
 import { SocialIcon } from "./Icons";
 import ProfileImage from "./ProfileImage";
+import MagneticButton from "./MagneticButton";
 
 // Lazy-load the heavy 3D canvas so the page paints fast.
 const ParticleNetwork = lazy(() => import("./ParticleNetwork"));
 
 export default function Hero() {
   const reducedMotion = usePrefersReducedMotion();
+  const { isMobile, isHighEnd } = useDeviceTier();
 
   return (
     <section
@@ -20,7 +23,7 @@ export default function Hero() {
       <div className="absolute inset-0 -z-10">
         {!reducedMotion && (
           <Suspense fallback={null}>
-            <ParticleNetwork />
+            <ParticleNetwork highEnd={isHighEnd} interactive={!isMobile} />
           </Suspense>
         )}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink-950/30 via-ink-950/40 to-ink-950" />
@@ -46,12 +49,12 @@ export default function Hero() {
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-4">
-              <a
+              <MagneticButton
                 href="#contact"
-                className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-ink-950 transition-transform hover:scale-105"
+                className="inline-block rounded-full bg-accent px-6 py-3 text-sm font-semibold text-ink-950 shadow-lg shadow-accent/20 transition-shadow hover:shadow-accent/40"
               >
                 Get in touch
-              </a>
+              </MagneticButton>
             </div>
 
             <div className="mt-9 flex items-center gap-3">

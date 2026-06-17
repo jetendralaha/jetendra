@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { personal, socials } from "../data/portfolio";
 import Section from "./Section";
+import MagneticButton from "./MagneticButton";
 import { LocationIcon, MailIcon, PhoneIcon, SocialIcon } from "./Icons";
 
 export default function Contact() {
@@ -99,12 +100,12 @@ export default function Contact() {
             If you want to create something new, let's connect and bring it to
             life.
           </p>
-          <a
+          <MagneticButton
             href={`mailto:${personal.email}`}
-            className="mx-auto mt-6 rounded-full bg-accent px-7 py-3 text-sm font-semibold text-ink-950 transition-transform hover:scale-105"
+            className="mx-auto mt-6 inline-block rounded-full bg-accent px-7 py-3 text-sm font-semibold text-ink-950 shadow-lg shadow-accent/20 transition-shadow hover:shadow-accent/40"
           >
             Let's build together
-          </a>
+          </MagneticButton>
         </motion.div>
       </div>
     </Section>
