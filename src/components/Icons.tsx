@@ -79,6 +79,79 @@ export function TrophyIcon({ className }: IconProps) {
   );
 }
 
+export function CloudIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
+      <path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97A6 6 0 0 0 6.34 9.5 4 4 0 0 0 6.5 19h11Z" />
+    </svg>
+  );
+}
+
+export function PipelineIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
+      <circle cx="5" cy="6" r="2.5" />
+      <circle cx="5" cy="18" r="2.5" />
+      <circle cx="19" cy="12" r="2.5" />
+      <path d="M7.5 6H13a3.5 3.5 0 0 1 3.5 3.5v.5" />
+      <path d="M7.5 18H13a3.5 3.5 0 0 0 3.5-3.5V14" />
+    </svg>
+  );
+}
+
+export function ShieldIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
+      <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
+
+export function SparkIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
+      <path d="M12 3v4M12 17v4M3 12h4M17 12h4" />
+      <path d="M12 8.5 13.2 11l2.5 1-2.5 1L12 15.5 10.8 13l-2.5-1 2.5-1L12 8.5Z" />
+    </svg>
+  );
+}
+
+export function ChartIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
+      <path d="M3 3v18h18" />
+      <path d="m7 14 3-4 3 3 4-6" />
+    </svg>
+  );
+}
+
+export function CodeIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
+      <path d="m16 18 6-6-6-6" />
+      <path d="m8 6-6 6 6 6" />
+    </svg>
+  );
+}
+
+/** Picks a representative icon for a skill category. */
+export function SkillIcon({ category, className }: { category: string; className?: string }) {
+  const key = category.toLowerCase();
+  if (key.includes("cloud") || key.includes("platform"))
+    return <CloudIcon className={className} />;
+  if (key.includes("ci/cd") || key.includes("iac"))
+    return <PipelineIcon className={className} />;
+  if (key.includes("sec")) return <ShieldIcon className={className} />;
+  if (key.includes("ai") || key.includes("automation"))
+    return <SparkIcon className={className} />;
+  if (key.includes("observ") || key.includes("monitor"))
+    return <ChartIcon className={className} />;
+  if (key.includes("program") || key.includes("os") || key.includes("code"))
+    return <CodeIcon className={className} />;
+  return <CloudIcon className={className} />;
+}
+
 export function SocialIcon({ icon, className }: { icon: SocialLink["icon"]; className?: string }) {
   switch (icon) {
     case "github":

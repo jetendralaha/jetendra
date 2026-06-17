@@ -77,14 +77,6 @@
   }
 }
 
-/* Custom-cursor mode: hide the native cursor on fine pointers */
-@media (hover: hover) and (pointer: fine) {
-  html.custom-cursor,
-  html.custom-cursor * {
-    cursor: none !important;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

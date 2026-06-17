@@ -9,7 +9,6 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
-import CustomCursor from "./components/CustomCursor";
 import ScrollProgress from "./components/ScrollProgress";
 import SmoothScroll from "./components/SmoothScroll";
 import AuroraBackground from "./components/AuroraBackground";
@@ -18,7 +17,6 @@ export default function App() {
   return (
     <SmoothScroll>
       <Loader />
-      <CustomCursor />
       <ScrollProgress />
       <div className="relative min-h-screen bg-ink-950 text-slate-100 antialiased">
         <AuroraBackground />

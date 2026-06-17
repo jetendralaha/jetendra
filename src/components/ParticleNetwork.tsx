@@ -277,12 +277,12 @@ export default function ParticleNetwork({
   highEnd = true,
   interactive = true,
 }: ParticleNetworkProps) {
-  const count = highEnd ? 110 : 55;
+  const count = highEnd ? 70 : 40;
 
   return (
     <Canvas
       camera={{ position: [0, 0, 9], fov: 60 }}
-      dpr={highEnd ? [1, 1.8] : [1, 1.3]}
+      dpr={highEnd ? [1, 1.5] : [1, 1.2]}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       style={{ position: "absolute", inset: 0 }}
     >
@@ -307,8 +307,8 @@ export default function ParticleNetwork({
       {highEnd && (
         <EffectComposer>
           <Bloom
-            intensity={0.9}
-            luminanceThreshold={0.2}
+            intensity={0.6}
+            luminanceThreshold={0.3}
             luminanceSmoothing={0.9}
             mipmapBlur
           />
